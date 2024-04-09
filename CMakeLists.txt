@@ -9,4 +9,7 @@ set(CMAKE_C_STANDARD 11)
 #[[add_executable(DataStructure Data_Structure/CXX/test.cpp)]]
 
 #[[add_executable(DataStructure LeetCode/C/test.c)]]
-add_executable(DataStructure LeetCode/CXX/test.cpp)
+#[[add_executable(DataStructure LeetCode/CXX/test.cpp)]]
+
+#[[add_executable(DataStructure Data_Structure/Structure/Func.c)]]
+add_executable(DataStructure Data_Structure/Structure/Func2.c)
