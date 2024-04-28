@@ -3,97 +3,109 @@
 //线性表 - 自行规范
 #include <stdio.h>
 #include <stdlib.h>
-#define Size 5
-typedef struct Table{
-    int * head;
+#include <stdbool.h>
+
+#define MaxSize 10
+typedef struct{
+    /*int * head;*/
+    int * data;
     int length;
-    int size;
-}table;
-table initTable(){
-    table t;
-    t.head=(int*)malloc(Size*sizeof(int));
-    if (!t.head)
+    /*int size;*/
+}SqList;
+void InitList(){    //SqList L
+    SqList L;
+    L.length = 0;
+    /*L.data=(int*)malloc(MaxSize * sizeof(int));
+    if (!L.data)
     {
         printf("初始化失败\n");
         exit(0);
     }
-    t.length=0;
-    t.size=Size;
-    return t;
+    L.length=0;
+    *//*t.size=MaxSize;*//*
+    return L;*/
 }
-table addTable(table t,int elem,int add)
+//插入操作
+bool ListInsert(SqList L, int i,int e)
 {
-    if (add>t.length+1||add<1) {
+    if (i < 1 || i > L.length + 1) {
         printf("插入位置有问题\n");
-        return t;
+        return false;
     }
-    if (t.length>=t.size) {
-        t.head=(int *)realloc(t.head, (t.size+1)*sizeof(int));
-        if (!t.head) {
+    if (L.length >= MaxSize) {
+        L.data=(int *)realloc(L.data, (MaxSize + 1) * sizeof(int));
+        if (!L.data) {
             printf("存储分配失败\n");
         }
-        t.size+=1;
+        /*MaxSize += 1;*/
     }
-    for (int i=t.length-1; i>=add-1; i--) {
-        t.head[i+1]=t.head[i];
+    for (int j= L.length - 1; j >= i - 1; j--) {
+        L.data[j + 1]=L.data[j];
     }
-    t.head[add-1]=elem;
-    t.length++;
-    return t;
+    L.data[i - 1]=e;
+    L.length++;
+    return true;
 }
-table delTable(table t,int add){
-    if (add>t.length || add<1) {
+//删除操作
+bool ListDelete(SqList L, int i,int e){
+    if (i < 1 || i > L.length + 1) {    //i > L.length || i < 1
         printf("被删除元素的位置有误\n");
-        return t;
+        return false;
     }
-    for (int i=add; i<t.length; i++) {
-        t.head[i-1]=t.head[i];
+    e = L.data[i-1];
+    /*for (int j=i; j < L.length; j++) {
+        L.data[j-1]=L.data[j];
     }
-    t.length--;
-    return t;
+    L.length--;
+    return L;*/
+
 }
-int selectTable(table t,int elem){
-    for (int i=0; i<t.length; i++) {
-        if (t.head[i]==elem) {
+//按值查找元素
+int LocateElem(SqList L, int e){
+    for (int i = 0; i < L.length; i++) {
+        if (L.data[i] == e) {
             return i+1;
         }
     }
-    return -1;
+    /*return -1;*/
+    return 0;
 }
-table amendTable(table t,int elem,int newElem){
-    int add=selectTable(t, elem);
-    t.head[add-1]=newElem;
-    return t;
+//修改
+SqList amendTable(SqList L, int i, int e){
+    int add=LocateElem(L, i);
+    L.data[add - 1]=e;
+    return L;
 }
-void displayTable(table t){
+void displayTable(SqList t){
     for (int i=0;i<t.length;i++) {
-        printf("%d ",t.head[i]);
+        printf("%d ",t.data[i]);
     }
     printf("\n");
 }
+
 int main(){
-    table t1=initTable();
-    for (int i=1; i<=Size; i++) {
-        t1.head[i-1]=i;
-        t1.length++;
+    SqList L=InitList();
+    for (int i=1; i <= MaxSize; i++) {
+        L.data[i - 1]=i;
+        L.length++;
     }
     printf("原顺序表：\n");
-    displayTable(t1);
+    displayTable(L);
 
     printf("删除元素1:\n");
-    t1=delTable(t1, 1);
-    displayTable(t1);
+    L = ListDelete(L,1,1);
+    displayTable(L);
 
     printf("在第2的位置插入元素5:\n");
-    t1=addTable(t1, 5, 2);
-    displayTable(t1);
+    L = ListInsert(L, 5, 2);
+    displayTable(L);
 
     printf("查找元素3的位置:\n");
-    int add=selectTable(t1, 3);
+    int add=LocateElem(L, 3);
     printf("%d\n",add);
 
     printf("将元素3改为6:\n");
-    t1=amendTable(t1, 3, 6);
-    displayTable(t1);
+    L=amendTable(L, 3, 6);
+    displayTable(L);
     return 0;
 }

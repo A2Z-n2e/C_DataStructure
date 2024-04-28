@@ -3,7 +3,7 @@
 //线性表的操作 - 参考代码
 #include <stdio.h>
 #include <stdlib.h>
-#define Size 5
+#define Size 10
 typedef struct Table{
     int * head;
     int length;

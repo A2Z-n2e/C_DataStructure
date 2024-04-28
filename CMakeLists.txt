@@ -8,16 +8,30 @@ set(CMAKE_C_STANDARD 11)
 #[[数据结构初学]]
 #[[add_executable(DataStructure Data_Structure/C/test.c)]]
 #[[add_executable(DataStructure Data_Structure/CXX/test.cpp)]]
-#[[线性表操作略写]]
+#[[线性表略写]]
 #[[add_executable(DataStructure Data_Structure/C/LinearList/2.1_a_SequenceList.c)]]
 #[[线性表 - 参考]]
-#[[add_executable(DataStructure Data_Structure/C/LinearList/2.1_SequenceList_2.c)]]
+#[[add_executable(DataStructure Data_Structure/C/LinearList/2.1_SequenceList.c)]]
 #[[线性表 - 自行规范]]
 #[[add_executable(DataStructure Data_Structure/C/LinearList/2.1_SequenceList_2.c)]]
 #[[线性表详细操作 - 参考]]
-#[[add_executable(DataStructure Data_Structure/C/LinearList/2.1_SequenceList_A.c)]]
+#[[add_executable(DataStructure Data_Structure/C/LinearList/2.1_SequenceList_A.c
+        Data_Structure/C/LinearList/test.c)]]
 #[[线性表详细操作 - 自行规范]]
-add_executable(DataStructure Data_Structure/C/LinearList/2.1_SequenceList_A_2.c)
+#[[add_executable(DataStructure Data_Structure/C/LinearList/2.1_SequenceList_A_2.c)]]
+#[[add_executable(DataStructure Data_Structure/C/LinearList/test.cpp)]]
+#[[2.1 线性表 - 操作略写]]
+#[[add_executable(DataStructure Data_Structure/CXX/C2_LinearList/2.1_a_SequenceList.cpp)]]
+#[[2.1 线性表 - 操作详情]]
+add_executable(DataStructure Data_Structure/CXX/C2_LinearList/2.1_SequenceList_1.cpp)
+#[[add_executable(DataStructure Data_Structure/CXX/C2_LinearList/2.1_SequenceList_2.cpp)]]
+
+
+
+
+
+
+
 
 #[[LeetCode做题]]
 #[[add_executable(DataStructure LeetCode/C/test.c)]]

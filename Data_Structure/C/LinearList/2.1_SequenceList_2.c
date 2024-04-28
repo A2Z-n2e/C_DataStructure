@@ -4,39 +4,41 @@
 #include <stdio.h>
 #include <stdlib.h>
 //初始化表：1.静态分配
-#define Size 5
-typedef struct Table{
-    int * head;
+#define MaxSize 10
+typedef struct{
+    /*int * head;*/
+    int * data; //ElemType data[MaxSize];
     int length;
-    int size;
-}table;
-table initTable(){
-    table t;
-    t.head=(int*)malloc(Size*sizeof(int));
-    if (!t.head)
+    /*int size;*/
+}SqList;
+SqList initList(){
+    SqList L;
+    /*L.head=(int*)malloc(MaxSize*sizeof(int));*/
+    L.data=(int*)malloc(MaxSize*sizeof(int));
+    if (!L.data)
     {
         printf("初始化失败");
         exit(0);
     }
-    t.length=0;
-    t.size=Size;
-    return t;
+    L.length=0;
+    /*L.size=MaxSize;*/
+    return L;
 }
 //输出顺序表中元素的函数
-void displayTable(table t){
-    for (int i=0;i<t.length;i++) {
-        printf("%d ",t.head[i]);
+void printList(SqList L){
+    for (int i=0;i<L.length;i++) {
+        printf("%d ",L.data[i]);
     }
     printf("\n");
 }
 int main(){
-    table t=initTable();
+    SqList L=initList();
     //向顺序表中添加元素
-    for (int i=1; i<=Size; i++) {
-        t.head[i-1]=i;
-        t.length++;
+    for (int i=1; i<=MaxSize; i++) {
+        L.data[i-1]=i;
+        L.length++;
     }
     printf("顺序表中存储的元素分别是：\n");
-    displayTable(t);
+    printList(L);
     return 0;
 }
